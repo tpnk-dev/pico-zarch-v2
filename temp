@@ -1,0 +1,43 @@
+if(current_cam_tile_offset_x==0)then
+        if(last_cam_tile_offset_x==0.1)then
+            terrain.x = cam_x-((terrain_ts-1)*terrain_mesh_nc)/2
+            
+            for r=1,#terrain.verts_matrix do
+                for c=1, #terrain.verts_matrix[r] do
+                    terrain.verts_matrix[c][r][2] = integer_list[(c + flr((cam_x-45)/terrain_ts))%terrain_mesh_nc][r]
+                    terrain.t_verts_matrix[c][r][4] = color_terrain[(c + flr((cam_x-45)/terrain_ts))%terrain_mesh_nc][r]
+                end
+            end
+            --stop()
+        end
+        if(last_cam_tile_offset_x==0.9)then
+            terrain.x = cam_x-((terrain_ts-1)*terrain_mesh_nc)/2
+            for c=1,#terrain.verts_matrix do
+                for r=1, #terrain.verts_matrix[c] do
+                    terrain.verts_matrix[c][r][2] = integer_list[(c + flr((cam_x-40)/terrain_ts))%terrain_mesh_nc][r]
+                    terrain.t_verts_matrix[c][r][4] = color_terrain[(c + flr((cam_x-40)/terrain_ts))%terrain_mesh_nc][r]
+                end
+            end
+        end
+    end
+
+    if(current_cam_tile_offset_z==0)then
+        if(last_cam_tile_offset_z==0.9)then
+            terrain.z = cam_z+((terrain_ts-1)*terrain_mesh_nc)/4 - 10
+            for c=1,#terrain.verts_matrix do
+                for r=1, #terrain.verts_matrix[c] do
+                    terrain.verts_matrix[c][r][2] = integer_list[c][(r + flr((cam_z-40)/terrain_ts))%terrain_mesh_nc]
+                    terrain.t_verts_matrix[c][r][4] = color_terrain[c][(r + flr((cam_z-40)/terrain_ts))%terrain_mesh_nc]
+                end
+            end
+        end
+        if(last_cam_tile_offset_z==0.1)then
+            terrain.z = cam_z+((terrain_ts-1)*terrain_mesh_nc)/4 - 10
+            for c=1,#terrain.verts_matrix do
+                for r=1, #terrain.verts_matrix[c] do
+                    terrain.verts_matrix[c][r][2] = integer_list[c][(r + flr((cam_z-40)/terrain_ts))%terrain_mesh_nc]
+                    terrain.t_verts_matrix[c][r][4] = color_terrain[c][(r + flr((cam_z-40)/terrain_ts))%terrain_mesh_nc]
+                end
+            end
+        end
+    end
